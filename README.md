@@ -1,4 +1,6 @@
-# Food Decision Making Machine
+# Food Decision Making Machine - Server
+
+Server component for the FDMM webapp, see [here](https://github.com/soda3x/food-decision-making-machine) for the client component.
 
 ## Usage
 
