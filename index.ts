@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { choose, fetchFileContents } from './utils';
+import { choose, fetchFileContents } from 'choose-for-me'
 import cors from 'cors';
 
 dotenv.config();
@@ -22,10 +22,10 @@ app.get('/choose', async (_, res) => {
     let choicesWoolies: string = await fetchFileContents(process.env.CHOICES_WOOLIES_URL!);
     // Join the standard choices with woolies as either should be available
     choices = choices.concat(choicesWoolies);
-    const standardChoice: string = choose(choices);
-    let wooliesChoice: string = choose(choicesWoolies);
+    const standardChoice: string = choose(choices, '\n');
+    let wooliesChoice: string = choose(choicesWoolies, '\n');
     while (wooliesChoice == standardChoice) {
-      wooliesChoice = choose(choicesWoolies);
+      wooliesChoice = choose(choicesWoolies, '\n');
     }
     res.send({ choices: { standard: standardChoice, woolies: wooliesChoice } });
   } catch (error) {
