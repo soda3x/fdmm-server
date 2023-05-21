@@ -6,7 +6,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
+const port: number = parseInt(process.env.PORT!);
 
 app.use(cors({
   origin: [process.env.CORS_URL!, process.env.CORS_URL_LOCAL!]
@@ -33,6 +33,6 @@ app.get('/choose', async (_, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, 'localhost', () => {
   console.log(`food-decision-making-machine: Server is running at http://localhost:${port}`);
 });
